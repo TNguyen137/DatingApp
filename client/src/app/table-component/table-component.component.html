@@ -1,0 +1,17 @@
+<p>table-component works!</p>
+<button (click)="getUsers()" (mouseleave)="onMouseLeave()" style="margin:0 auto; display:block">GetUsers</button>
+<mat-table class="practice-table mat-elevation-z8" [dataSource]='dataSource'>
+    <ng-container matColumnDef='idNumber'>
+        <mat-header-cell *matHeaderCellDef>Id#</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.id }}</mat-cell>
+    </ng-container> 
+    <ng-container matColumnDef='Name'>
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.userName }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+    <mat-row *matRowDef='let row; columns: displayedColumns' (click)='onRowClicked(row)'></mat-row>
+</mat-table>
+{{error}}
+{{dataString}}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './services/user.service'
 
 @Component({
   selector: 'app-root',
@@ -10,21 +11,74 @@ export class AppComponent implements OnInit{
   number: number | undefined;
   title = 'The Dating App: ';
   users: any;
+  spreadUsers : any;
+  singleUser: any;
+  dateTest = new Date('12/07/1962');
+  exponentTest = 5;
 
-  constructor(private _http: HttpClient) {
-    //this.number = this.users ?? 1;
+  states: any[] = [
+    {
+      USA: [
+        {
+          name: 'Alabama',
+          abbreviation: 'AL',
+          country: 'USA'
+        },
+        {
+          name: 'Alaska',
+          abbreviation: 'AK',
+          country: 'USA'
+        }
+      ]
+    },
+    {
+      Canada: [
+        {
+          name: 'Alberta',
+          abbreviation: 'ALB',
+          country: 'Canada'
+        }
+      ]
+    }
+  ];
+
+  constructor(private _http: HttpClient, private _userService: UserService) {
     this.number = this.users ? Object.keys(this.users).length : 1;
+    console.log(this.states);
+
+    this.states.forEach(state => {
+      console.log(state);
+      for (let key in state) {
+        console.log(key);
+        console.log(state[key][0].name);
+        for (let key2 in state[key]) {
+          console.log(state[key][key2]);
+          for (let key3 in state[key][key2]) {
+            console.log([key3]);
+            console.log(state[key][key2][key3]);
+          }
+        }
+      }
+    })
   }
 
   ngOnInit() {
     this.getUsers();
   }
 
+  fakeCallBackFunction() {
+    console.log("Execution of callback function");
+  };
+
   getUsers() {
-    this._http.get('https://localhost:5001/api/users').subscribe(response => {
-      this.users = response;
-    }, error => {
-      console.log(error);
-    })
+    this._userService.getUsers$().subscribe(
+      response => {
+          this.users = response; 
+          this.number = this.users ? Object.keys(this.users).length : 1;
+          this.spreadUsers = [...response, { id: 4, userName: 'Becky Hammond' }];
+          this.singleUser = {...this.users[1]};
+        }, error => {
+          console.log(error);
+        }, () => this.fakeCallBackFunction())
   }
 }

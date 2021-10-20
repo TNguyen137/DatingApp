@@ -1,0 +1,21 @@
+<mat-grid-list cols="4" class="calendarComp">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+
+        <mat-calendar 
+        [selected]="selectedDate" 
+        [startAt]="startAt"
+        [minDate]="minDate" 
+        [maxDate]="maxDate" 
+        [dateFilter]="myDateFilter"
+        (selectedChange)="onSelect($event)">
+        </mat-calendar>
+
+    </mat-grid-tile>
+    <mat-grid-tile>
+
+        <p class="cal_date">{{DayAndDate}}, {{year}}</p>
+
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,7 @@
+.calendarComp {
+    display: flex;
+}
+
+.mat-calendar{
+    width: 850px !important; 
+}

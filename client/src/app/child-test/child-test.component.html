@@ -1,0 +1,4 @@
+<p>ChildTestComponent!</p>
+<input type="text" [(ngModel)]="messageFromChild" (ngModelChange)="change($event)" onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px'" style="min-width: 250px; margin: auto;">
+<p>ngModelTest = {{messageFromChild}}</p>
+Say {{ messageFromParent }}
