@@ -1,0 +1,8 @@
+<p>ParentTestComponent!</p>
+ChildMessage: {{ messageFromChild }}
+<app-child-test [messageFromParent]="parentMessage" (onChange)="messageFromChild = $event.value"></app-child-test>
+
+<ul>
+    <li appHighlight *ngFor='let data of obsDataSource'>
+      {{data}}
+</ul>

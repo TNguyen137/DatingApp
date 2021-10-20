@@ -1,7 +1,12 @@
-<h1>{{ title }} {{number}}</h1>
 
-<ul>
-  <li *ngFor='let user of users'>
+<ul class = "nav">
+  <li appHighlight2 *ngFor='let user of users'>
     {{user.id}} - {{user.userName}}
   </li>
 </ul>
+
+<app-table-component></app-table-component>
+
+<app-parent-test></app-parent-test>
+
+<app-calendar-component></app-calendar-component>
