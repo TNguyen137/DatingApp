@@ -24,6 +24,10 @@ import { FormsModule } from '@angular/forms';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 import { ExponentialPipePipe } from './pipes/exponential-pipe.pipe';
 import { DatePipe } from '@angular/common';
+import { NavComponent } from './nav/nav.component';
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,10 @@ import { DatePipe } from '@angular/common';
     ChildTestComponent,
     CalendarComponentComponent,
     DatePipePipe,
-    ExponentialPipePipe
+    ExponentialPipePipe,
+    NavComponent,
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +58,10 @@ import { DatePipe } from '@angular/common';
     MatNativeDateModule,
     MatGridListModule,
     NoopAnimationsModule,
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot(),
   ],
-  providers: [UserService, DatePipe],
+  providers: [UserService, DatePipe, BsDropdownConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
