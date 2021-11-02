@@ -24,6 +24,16 @@ import { FormsModule } from '@angular/forms';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 import { ExponentialPipePipe } from './pipes/exponential-pipe.pipe';
 import { DatePipe } from '@angular/common';
+import { NavComponent } from './nav/nav.component';
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './modules/shared.module'
 
 @NgModule({
   declarations: [
@@ -35,7 +45,14 @@ import { DatePipe } from '@angular/common';
     ChildTestComponent,
     CalendarComponentComponent,
     DatePipePipe,
-    ExponentialPipePipe
+    ExponentialPipePipe,
+    NavComponent,
+    HomeComponent,
+    RegisterComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    ListsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +68,10 @@ import { DatePipe } from '@angular/common';
     MatNativeDateModule,
     MatGridListModule,
     NoopAnimationsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
-  providers: [UserService, DatePipe],
+  providers: [UserService, DatePipe, BsDropdownConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
