@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTO;
@@ -42,6 +43,18 @@ namespace API.Controllers
             // var user = await _userRepository.GetUserByUserNameAsync(userName);
             //return _mapper.Map<MemberDTO>(user);
             return await _userRepository.GetMemberAsync(userName);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDTO memberUpdateDTO) {
+            var userName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value; //Username from token that api used to authenticate user
+            var user = await _userRepository.GetUserByUserNameAsync(userName);
+            _mapper.Map(memberUpdateDTO, user);
+            _userRepository.Update(user); //Flag user as being updated by entity framework
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update user!");
         }
     }
 }
